@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/caledarViewFragment">
+
+    <fragment
+        android:id="@+id/caledarViewFragment"
+        android:name="com.example.budgetapp_youtube.ui.fragments.CaledarViewFragment"
+        android:label="CaledarViewFragment" >
+        <action
+            android:id="@+id/action_caledarViewFragment_to_budgetEntryFragment"
+            app:destination="@id/budgetEntryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/budgetEntryFragment"
+        android:name="com.example.budgetapp_youtube.ui.fragments.BudgetEntryFragment"
+        android:label="BudgetEntryFragment" >
+        <action
+            android:id="@+id/action_budgetEntryFragment_to_caledarViewFragment"
+            app:destination="@id/caledarViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.budgetapp_youtube.ui.fragments.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_caledarViewFragment"
+            app:destination="@id/caledarViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reportsFragment"
+        android:name="com.example.budgetapp_youtube.ui.fragments.ReportsFragment"
+        android:label="ReportsFragment" />
+    <action android:id="@+id/action_global_profileFragment" app:destination="@id/profileFragment" />
+</navigation>
