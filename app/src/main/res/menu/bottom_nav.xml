@@ -3,8 +3,10 @@
 
     <item
         android:title="Enter Budget"
+        android:icon="@drawable/ic_edit"
         android:id="@+id/budgetEntryFragment"/>
     <item
+        android:icon="@drawable/ic_file"
         android:id="@+id/reportsFragment"
         android:title="See Reports"/>
 
