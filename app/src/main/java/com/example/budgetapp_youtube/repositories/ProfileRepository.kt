@@ -11,4 +11,6 @@ class ProfileRepository @Inject constructor(
     fun getProfile() = profileDao.getProfileData()
 
     suspend fun insertProfileDate(profile:Profile) = profileDao.insertProfileData(profile)
+
+    suspend fun  updateCurrentBalance(revisedBalance:Float) = profileDao.updateCurrentBalance(revisedBalance)
 }
