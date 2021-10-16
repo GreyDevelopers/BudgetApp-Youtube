@@ -4,7 +4,7 @@
     <item
         android:title="Enter Budget"
         android:icon="@drawable/ic_edit"
-        android:id="@+id/budgetEntryFragment"/>
+        android:id="@+id/caledarViewFragment"/>
     <item
         android:icon="@drawable/ic_file"
         android:id="@+id/reportsFragment"
