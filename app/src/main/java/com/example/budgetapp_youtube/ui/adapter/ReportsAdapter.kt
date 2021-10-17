@@ -12,11 +12,20 @@ import com.example.budgetapp_youtube.databinding.ItemBudgetBinding
 import com.example.budgetapp_youtube.entities.Budget
 import com.example.budgetapp_youtube.util.UtilityFunctions.dateMillisToString
 
-class ReportsAdapter : RecyclerView.Adapter<ReportsAdapter.MyViewHolder>(){
+class ReportsAdapter(
+    val listener: MyOnClickListener
+) : RecyclerView.Adapter<ReportsAdapter.MyViewHolder>(){
 
     inner class  MyViewHolder(val itemBudgetBinding: ItemBudgetBinding): RecyclerView.ViewHolder(
         itemBudgetBinding.root
     ){
+        init {
+            itemBudgetBinding.root.setOnLongClickListener {
+                val position = adapterPosition
+                listener.OnClick(position)
+                true
+            }
+        }
 
     }
 
@@ -58,5 +67,9 @@ class ReportsAdapter : RecyclerView.Adapter<ReportsAdapter.MyViewHolder>(){
 
     override fun getItemCount(): Int {
        return  differ.currentList.size
+    }
+
+    interface MyOnClickListener{
+        fun OnClick(position:Int)
     }
 }

@@ -9,12 +9,13 @@ import com.example.budgetapp_youtube.R
 import com.example.budgetapp_youtube.databinding.FragmentBudgetEntryBinding
 import com.example.budgetapp_youtube.databinding.FragmentCalenderViewBinding
 import com.example.budgetapp_youtube.databinding.FragmentReportsBinding
+import com.example.budgetapp_youtube.databinding.UpdateBudgetBottomSheetBinding
 import com.example.budgetapp_youtube.ui.adapter.ReportsAdapter
 import com.example.budgetapp_youtube.ui.viewmodels.BudgetViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ReportsFragment : Fragment(R.layout.fragment_reports) {
+class ReportsFragment : Fragment(R.layout.fragment_reports), ReportsAdapter.MyOnClickListener {
 
     lateinit var binding: FragmentReportsBinding
     private val budgetViewModel:BudgetViewModel by viewModels()
@@ -34,11 +35,18 @@ class ReportsFragment : Fragment(R.layout.fragment_reports) {
     }
 
     private fun initializeRecyclerView() {
-        reportsAdapter = ReportsAdapter()
+        reportsAdapter = ReportsAdapter(this)
         binding.rcvReports.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = reportsAdapter
         }
+
+    }
+
+    override fun OnClick(position: Int) {
+        val currentBudgetItem = reportsAdapter.differ.currentList[position]
+        val bottomSheet = UpdateBudgetBottomSheetFragment(currentBudgetItem)
+        bottomSheet.show(requireActivity().supportFragmentManager,"UpdateBudget")
 
     }
 }
