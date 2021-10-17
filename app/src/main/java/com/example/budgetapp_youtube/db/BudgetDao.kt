@@ -1,10 +1,7 @@
 package com.example.budgetapp_youtube.db
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.budgetapp_youtube.entities.Budget
 
 @Dao
@@ -18,4 +15,7 @@ interface BudgetDao {
 
     @Query("UPDATE budget SET amount = :amount, purpose = :purpose WHERE id = :id")
     suspend fun  updateBudget(amount:Float, purpose:String, id:Int)
+
+    @Delete
+    suspend fun deleteEntry(budget:Budget)
 }
