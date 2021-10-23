@@ -26,6 +26,12 @@ class ReportsFragment : Fragment(R.layout.fragment_reports), ReportsAdapter.MyOn
         binding = FragmentReportsBinding.bind(view)
         initializeRecyclerView()
         getAllEntries()
+
+        binding.statistics.setOnClickListener {
+            val bottomSheet = StatisticsBottomSheetFragment()
+            bottomSheet.show(requireActivity().supportFragmentManager,"BottomSheet")
+
+        }
     }
 
     private fun getAllEntries() {

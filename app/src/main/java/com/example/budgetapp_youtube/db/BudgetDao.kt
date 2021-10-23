@@ -18,4 +18,10 @@ interface BudgetDao {
 
     @Query("UPDATE budget SET amount = :amount, purpose = :purpose WHERE id = :id")
     suspend fun  updateBudget(amount:Float, purpose:String, id:Int)
+
+    @Query("SELECT SUM(amount) From budget WHERE creditOrDebit = 'Credit'")
+    fun getTotalCredit():LiveData<Float>
+
+    @Query("SELECT SUM(amount) from budget WHERe creditOrDebit = 'Debit'")
+    fun getTotalSpendig():LiveData<Float>
 }
