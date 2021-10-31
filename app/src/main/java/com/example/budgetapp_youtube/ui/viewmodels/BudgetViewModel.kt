@@ -1,6 +1,7 @@
 package com.example.budgetapp_youtube.ui.viewmodels
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.budgetapp_youtube.entities.Budget
@@ -18,6 +19,9 @@ class BudgetViewModel @Inject constructor(
     val totalCredit:LiveData<Float> = budgetRepository.getTotalCredit()
     val totalSpendig:LiveData<Float> = budgetRepository.getTotalSpending()
 
+    var _daateRangeBudgetEntries : MutableLiveData<List<Budget>> = MutableLiveData()
+    val daateRangeBudgetEntries : LiveData<List<Budget>> = _daateRangeBudgetEntries
+
 
     fun insertBudget(budget: Budget) = viewModelScope.launch {
         budgetRepository.insertBudget(budget)
@@ -26,4 +30,10 @@ class BudgetViewModel @Inject constructor(
     fun updateBudget(amount:Float,purpose:String,id:Int) = viewModelScope.launch {
         budgetRepository.updateBudget(amount, purpose, id)
     }
+
+    fun getReportsBetweenDates(startDate:Long, endDate:Long) = viewModelScope.launch {
+        val reponse = budgetRepository.getBudgetEntriesBetweenDates(startDate, endDate)
+        _daateRangeBudgetEntries.postValue(reponse)
+    }
+
 }
